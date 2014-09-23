@@ -197,7 +197,7 @@
     (swap! with-bindings*-atom inc)
     (apply original-with-bindings* binding-map f args)))
 
-(deftest dynamic-binding-minimalism
+(deftest ^:serial dynamic-binding-minimalism
   (with-redefs [with-bindings* with-bindings*-tracing]
     (is (= 3 (do (response-for app :get "/about")
                  @with-bindings*-atom))

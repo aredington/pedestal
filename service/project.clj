@@ -63,5 +63,10 @@
                              [org.slf4j/log4j-over-slf4j "1.7.7"]]
               :repositories
               [["sonatype-oss"
-                "https://oss.sonatype.org/content/groups/public/"]]}})
+                "https://oss.sonatype.org/content/groups/public/"]]}}
+  :plugins [[com.holychao/parallel-test "0.2.0"]]
+  :parallel-test {:categorizer (fn [meta] (if (:serial meta) :serial :parallel))
+                  :pools {:serial (constantly 1)
+                          :parallel (fn [] (.availableProcessors (Runtime/getRuntime)))}
+                  :sequence [:serial]})
 

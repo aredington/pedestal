@@ -10,7 +10,7 @@
 (def custom-gzip (jetty-util/filter-holder (GzipFilter.) {"mimeTypes" "text/javascript,text/plain"
                                                           "minGzipSize" "0"}))
 
-(deftest simple-filter
+(deftest ^:serial simple-filter
   (testing "A Simple GZip filter"
     (test-util/with-server test-util/hello-world {:port 4347
                               :jetty-options {:context-configurator #(jetty-util/add-servlet-filter % {:filter GzipFilter})}}
