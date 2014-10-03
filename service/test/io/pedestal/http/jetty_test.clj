@@ -69,7 +69,7 @@
        ~@body
        (finally ((:stop-fn server#))))))
 
-(deftest test-run-jetty
+(deftest ^:serial test-run-jetty
   (testing "HTTP server"
     (with-server hello-world {:port 4347}
       (let [response (http/get "http://localhost:4347")]
